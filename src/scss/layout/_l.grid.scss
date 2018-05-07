@@ -1,23 +1,65 @@
 .l-grid {
   display: grid;
   grid-template-columns: 1fr;
-  margin: 0 auto;
+  @if not $ie-support {
+    margin: 0 auto;
+  }
 
   @each $name, $gap in $grid-column-gap {
     @include media-query($name) {
-      grid-column-gap: $gap;
+      @if $ie-support {
+        margin-left: -$gap;
+        @supports (grid-column-gap: 0) {
+          margin-left: 0;
+          grid-column-gap: $gap;
+        }
+      } @else {
+        grid-column-gap: $gap;
+      }
     }
   }
 
   @each $name, $gap in $grid-row-gap {
     @include media-query($name) {
-      grid-row-gap: $gap;
+      @if $ie-support {
+        margin-top: -$gap;
+        @supports (grid-row-gap: 0) {
+          margin-top: 0;
+          grid-row-gap: $gap;
+        }
+      } @else {
+        grid-row-gap: $gap;
+      }
     }
   }
 
   @each $name, $max-width in $grid-max-width {
     @include media-query($name) {
       max-width: $max-width;
+    }
+  }
+}
+
+.l-grid__cell {
+  @each $name, $gap in $grid-column-gap {
+    @include media-query($name) {
+      @if $ie-support {
+        margin-left: $gap;
+        @supports (grid-column-gap: 0) {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+  
+  @each $name, $gap in $grid-row-gap {
+    @include media-query($name) {
+      @if $ie-support {
+        margin-top: $gap;
+        @supports (grid-row-gap: 0) {
+          margin-top: 0;
+        }
+      }
     }
   }
 }

@@ -40,6 +40,7 @@ gulp.task('styles', function() {
     .pipe(postcss([ autoprefixer({
       cascade: false,
       browsers: browsers,
+      grid: true,
       flexbox: 'no-2009'
     }) ]))
     .pipe(gulp.dest('dist/css'))
