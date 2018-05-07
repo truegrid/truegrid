@@ -1,5 +1,10 @@
 /* Settings */
 /* Layout */
+.l-container {
+  margin: 0 auto;
+  max-width: 80rem;
+}
+
 .l-grid {
   display: -ms-grid;
   display: grid;
@@ -7,7 +12,6 @@
   grid-template-columns: 1fr;
   margin-left: -1rem;
   margin-top: -1rem;
-  max-width: 100rem;
 }
 
 @supports (grid-column-gap: 0) {

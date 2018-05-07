@@ -1,0 +1,9 @@
+.l-container {
+  margin: 0 auto;
+  
+  @each $name, $max-width in $grid-max-width {
+    @include media-query($name) {
+      max-width: $max-width;
+    }
+  }
+}

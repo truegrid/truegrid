@@ -32,10 +32,12 @@
       }
     }
   }
-
-  @each $name, $max-width in $grid-max-width {
-    @include media-query($name) {
-      max-width: $max-width;
+  
+  @if not $ie-support {
+    @each $name, $max-width in $grid-max-width {
+      @include media-query($name) {
+        max-width: $max-width;
+      }
     }
   }
 }
@@ -51,7 +53,7 @@
       }
     }
   }
-  
+
   @each $name, $gap in $grid-row-gap {
     @include media-query($name) {
       @if $ie-support {
