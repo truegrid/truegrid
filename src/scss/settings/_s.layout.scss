@@ -1,0 +1,15 @@
+$grid-breakpoints: (
+  'base': 0,
+  's': em(500px),
+  'm': em(800px),
+  'l': em(1000px),
+);
+$grid-max-columns: 6;
+$grid-column-gap: (
+  'base': 1rem,
+  'm': 2rem,
+);
+$grid-row-gap: $grid-column-gap;
+$grid-max-width: (
+  'base': 100rem,
+);

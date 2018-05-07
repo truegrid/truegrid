@@ -1,0 +1,43 @@
+.l-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0 auto;
+
+  @each $name, $gap in $grid-column-gap {
+    @include media-query($name) {
+      grid-column-gap: $gap;
+    }
+  }
+
+  @each $name, $gap in $grid-row-gap {
+    @include media-query($name) {
+      grid-row-gap: $gap;
+    }
+  }
+
+  @each $name, $max-width in $grid-max-width {
+    @include media-query($name) {
+      max-width: $max-width;
+    }
+  }
+}
+
+@each $name, $breakpoint in $grid-breakpoints {
+  $suffix: if($breakpoint == 0, '', '_#{$name}');
+
+  @include media-query($name) {
+    @for $col-number from 1 through $grid-max-columns {
+      .l-grid--#{$col-number}#{$suffix} {
+        grid-template-columns: repeat($col-number, 1fr);
+      }
+
+      .l-grid__cell--#{$col-number}#{$suffix} {
+        grid-column-end: span $col-number;
+      }
+
+      .l-grid__cell--start-#{$col-number}#{$suffix} {
+        grid-column-start: ($col-number);
+      }
+    }
+  }
+}
